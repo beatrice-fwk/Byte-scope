@@ -30,3 +30,12 @@ def insert_news(articles, headline, art_date, link, content):
     )
     conn.commit()
     conn.close()
+
+
+def fetch_all_articles():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, headline, content FROM news")
+    articles = cursor.fetchall()
+    conn.close()
+    return articles

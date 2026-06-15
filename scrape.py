@@ -40,3 +40,12 @@ if __name__ == "__main__":
     init_db()
     scrape_hacker_news()
  
+try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=f"Summarize this article in 2 sentences:\n\n{article_text}",
+        )
+        print(response.text)
+    except Exception as exc:
+        print(f"Gemini request failed: {exc}")
+        print(local_summary(article_text))
